@@ -12,14 +12,14 @@ This code has been tested with `Pytorch` and GTX1080TI GPU.
 
 ## Inference
 ```
-python
+python Test_SYMNet.py
 ```
 
 ## Training
 If you want to train a new model using your own dataset, please define your own data generator for `train_SYMNet.py` and perform the following script.
 
 ```
-python train_SYMNet.py
+python train_sym_onepass.py
 ```
 
 ## Publication
