@@ -29,6 +29,9 @@ If you find this repository useful, please cite:
 [Tony C.W. Mok](https://cwmok.github.io/ "Tony C.W. Mok"), Albert C.S. Chung  
 CVPR 2020. [eprint arXiv:2003.09514](https://arxiv.org/abs/2003.09514 "eprint arXiv:2003.09514")
 
+## Notes on this repository
+We found that estimating the time 1 solution instead of 0.5 solution tends to produce a smoother result in our later experiments. If you want to switch back to 0.5 solution, please replace the "self.time_step" with "self.time_step-1" at line 165 in `Models.py` and train a new model from scratch.
+
 ## Acknowledgment
 Some codes in this repository are modified from [IC-Net](https://github.com/zhangjun001/ICNet) and [VoxelMorph](https://github.com/voxelmorph/voxelmorph).
 
