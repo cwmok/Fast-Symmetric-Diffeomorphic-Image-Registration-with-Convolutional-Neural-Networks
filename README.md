@@ -26,7 +26,7 @@ python train_sym_onepass.py
 If you find this repository useful, please cite:
 
 - **Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks**  
-[Tony C.W. Mok](https://cwmok.github.io/ "Tony C. W. Mok"), Albert C. S. Chung  
+[Tony C. W. Mok](https://cwmok.github.io/ "Tony C. W. Mok"), Albert C. S. Chung  
 CVPR 2020. [eprint arXiv:2003.09514](https://arxiv.org/abs/2003.09514 "eprint arXiv:2003.09514")
 
 ## Notes on this repository
