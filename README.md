@@ -1,6 +1,6 @@
 # Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks
 
-This is offical Pytorch implementation of "Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks" (CVPR 2020), written by Tony C. W. Mok and Albert C. S. Chung.
+This is the official Pytorch implementation of "Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks" (CVPR 2020), written by Tony C. W. Mok and Albert C. S. Chung.
 
 ## Prerequisites
 - `Python 3.5.2+`
