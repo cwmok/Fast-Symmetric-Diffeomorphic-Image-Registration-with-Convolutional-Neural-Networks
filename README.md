@@ -2,6 +2,8 @@
 
 This is the official Pytorch implementation of "Fast Symmetric Diffeomorphic Image Registration with Convolutional Neural Networks" (CVPR 2020), written by Tony C. W. Mok and Albert C. S. Chung.
 
+\*\* Please also check out our new deep learning-based image registration framework ([LapIRN - MICCAI2020](https://arxiv.org/abs/2006.16148 "eprint arXiv:2006.16148")) at https://github.com/cwmok/LapIRN, which achieved promising registration performance in large deformation settings. \*\*
+
 ## Prerequisites
 - `Python 3.5.2+`
 - `Pytorch 1.3.0`
