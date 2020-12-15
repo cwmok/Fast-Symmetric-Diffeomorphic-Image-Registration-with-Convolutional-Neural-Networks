@@ -65,7 +65,6 @@ def train():
     grid = generate_grid(imgshape)
     grid = torch.from_numpy(np.reshape(grid, (1,) + grid.shape)).cuda().float()
 
-    print(grid.type())
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     # optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=0.9)
     model_dir = '../Model'
