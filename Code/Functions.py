@@ -97,7 +97,7 @@ def save_flow(I_img,savename):
 
 class Dataset_epoch(Data.Dataset):
   'Characterizes a dataset for PyTorch'
-  def __init__(self, names, norm=True):
+  def __init__(self, names, norm=False):
         'Initialization'
         self.names = names
         self.norm = norm
