@@ -33,7 +33,7 @@ parser.add_argument("--start_channel", type=int,
                     help="number of start channels")
 parser.add_argument("--datapath", type=str,
                     dest="datapath",
-                    default='/home/wing/Desktop/registration/miccai2019/SYMNet_github/data_and_aseg/crop_min_max/norm',
+                    default='/PATH/TO/YOUR/DATA',
                     help="data path for training images")
 opt = parser.parse_args()
 
