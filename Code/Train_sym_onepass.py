@@ -61,7 +61,7 @@ def train():
     for param in transform.parameters():
         param.requires_grad = False
         param.volatile = True
-    names = sorted(glob.glob(datapath + '/*.nii'))[0:255]
+    names = sorted(glob.glob(datapath + '/*.nii'))
     grid = generate_grid(imgshape)
     grid = torch.from_numpy(np.reshape(grid, (1,) + grid.shape)).cuda().float()
 
