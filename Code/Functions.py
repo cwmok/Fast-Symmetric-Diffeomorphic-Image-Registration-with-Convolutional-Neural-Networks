@@ -108,7 +108,7 @@ class Dataset_epoch(Data.Dataset):
 
 
         if self.norm:
-            return  imgnorm(img_A), imgnorm(img_B)
+            return torch.from_numpy(imgnorm(img_A)).float(), torch.from_numpy(imgnorm(img_B)).float()
         else:
             return torch.from_numpy(img_A).float(), torch.from_numpy(img_B).float()
 
