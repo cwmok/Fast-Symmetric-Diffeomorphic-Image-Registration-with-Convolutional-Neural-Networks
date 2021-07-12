@@ -20,6 +20,7 @@ def generate_grid(imgshape):
     grid = np.swapaxes(grid,1,2)
     return grid
 
+
 def generate_grid_unit(imgshape):
     x = (np.arange(imgshape[0]) - ((imgshape[0]-1)/2)) / (imgshape[0]-1) * 2
     y = (np.arange(imgshape[1]) - ((imgshape[1]-1)/2)) / (imgshape[1]-1) * 2
@@ -47,6 +48,7 @@ def transform_unit_flow_to_flow_cuda(flow):
 
     return flow
 
+
 def load_4D(name):
     X = nib.load(name)
     X = X.get_fdata()
@@ -60,21 +62,12 @@ def load_5D(name):
     X = np.reshape(X, (1,)+(1,)+ X.shape)
     return X
 
-def imgnorm(N_I,index1=0.0001,index2=0.0001):
-    I_sort = np.sort(N_I.flatten())
-    I_min = I_sort[int(index1*len(I_sort))]
-    I_max = I_sort[-int(index2*len(I_sort))]
-    
-    N_I =1.0*(N_I-I_min)/(I_max-I_min)
-    N_I[N_I>1.0]=1.0
-    N_I[N_I<0.0]=0.0
-    N_I2 = N_I.astype(np.float32)
-    return N_I2
 
-
-def Norm_Zscore(img):
-    img= (img-np.mean(img))/np.std(img) 
-    return img
+def imgnorm(img):
+    i_max = np.max(img)
+    i_min = np.min(img)
+    norm = (img - i_min)/(i_max - i_min)
+    return norm
 
 
 def save_img(I_img,savename):
@@ -115,7 +108,7 @@ class Dataset_epoch(Data.Dataset):
 
 
         if self.norm:
-            return  Norm_Zscore(imgnorm(img_A)) , Norm_Zscore(imgnorm(img_B))
+            return  imgnorm(img_A), imgnorm(img_B)
         else:
             return torch.from_numpy(img_A).float(), torch.from_numpy(img_B).float()
 
@@ -140,8 +133,8 @@ class Predict_dataset(Data.Dataset):
         moved_label = load_4D(self.move_label_list[index])
 
         if self.norm:
-            fixed_img = Norm_Zscore(imgnorm(fixed_img))
-            moved_img = Norm_Zscore(imgnorm(moved_img))
+            fixed_img = imgnorm(fixed_img)
+            moved_img = imgnorm(moved_img)
 
         fixed_img = torch.from_numpy(fixed_img)
         moved_img = torch.from_numpy(moved_img)

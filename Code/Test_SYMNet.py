@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 import numpy as np
 import torch
 from Models import SYMNet,SpatialTransform, DiffeomorphicTransform, CompositionTransform
-from Functions import generate_grid,save_img,save_flow, load_4D
+from Functions import generate_grid,save_img,save_flow, load_4D, imgnorm
 
 
 parser = ArgumentParser()
@@ -53,6 +53,11 @@ def test():
     
     fixed_img = load_4D(fixed_path)
     moved_img = load_4D(moving_path)
+
+    norm = False
+    if norm:
+        fixed_img = imgnorm(fixed_img)
+        moved_img = imgnorm(moved_img)
 
     fixed_img = torch.from_numpy(fixed_img).float().to(device).unsqueeze(dim=0)
     moved_img = torch.from_numpy(moved_img).float().to(device).unsqueeze(dim=0)
