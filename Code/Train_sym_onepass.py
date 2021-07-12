@@ -23,7 +23,7 @@ parser.add_argument("--magnitude", type=float,
                     dest="magnitude", default=0.001,
                     help="magnitude loss: suggested range 0.001 to 1.0")
 parser.add_argument("--smooth", type=float,
-                    dest="smooth", default=1.0,
+                    dest="smooth", default=2.0,
                     help="Gradient smooth loss: suggested range 0.1 to 10")
 parser.add_argument("--checkpoint", type=int,
                     dest="checkpoint", default=10000,
