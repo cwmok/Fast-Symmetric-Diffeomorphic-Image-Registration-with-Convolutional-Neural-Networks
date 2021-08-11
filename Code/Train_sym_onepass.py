@@ -17,13 +17,13 @@ parser.add_argument("--iteration", type=int,
                     dest="iteration", default=160001,
                     help="number of total iterations")
 parser.add_argument("--local_ori", type=float,
-                    dest="local_ori", default=10.0,
+                    dest="local_ori", default=1000.0,
                     help="Local Orientation Consistency loss: suggested range 1 to 1000")
 parser.add_argument("--magnitude", type=float,
                     dest="magnitude", default=0.001,
                     help="magnitude loss: suggested range 0.001 to 1.0")
 parser.add_argument("--smooth", type=float,
-                    dest="smooth", default=3.0,
+                    dest="smooth", default=4.0,
                     help="Gradient smooth loss: suggested range 0.1 to 10")
 parser.add_argument("--checkpoint", type=int,
                     dest="checkpoint", default=10000,
