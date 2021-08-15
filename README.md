@@ -19,10 +19,18 @@ python Test_SYMNet.py
 
 ## Training
 If you want to train a new model using your own dataset, please define your own data generator for `train_SYMNet.py` and perform the following script.
-
 ```
 python train_sym_onepass.py
 ```
+
+## (Example) Training on the preprocessed OASIS dataset
+If you want to train on the preprocessed OASIS dataset in https://github.com/adalca/medical-datasets/blob/master/neurite-oasis.md. We have an example showing how to train on this dataset.
+1. Download the preprocessed OASIS dataset, unzip it and put it in "Data/OASIS"
+2. To train a new SyMNet, `python Train_sym_neurite_oasis.py` will create a SyMNet model trained on the first 255 cases in the dataset.
+3. To test the model, `python Test_SYMNet_neurite_oasis.py --modelpath {{pretrained_model_path}} --fixed ../Data/image_A_full_size.nii.gz --moving ../Data/image_B_full_size.nii.gz` will load the assigned model and register the image "image_A_full_size.nii.gz" and "image_B_full_size.nii.gz".
+
+A pretrained model and its log file are available in "Model/SYMNet_neurite_oasis_55000.pth" and "Log/SYMNet_neurite_oasis.txt", respectively.
+
 
 ## Publication
 If you find this repository useful, please cite:
