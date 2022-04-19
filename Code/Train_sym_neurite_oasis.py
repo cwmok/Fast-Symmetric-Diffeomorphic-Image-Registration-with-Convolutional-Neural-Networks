@@ -52,7 +52,7 @@ datapath = opt.datapath
 if not os.path.isdir("../Log"):
     os.mkdir("../Log")
 
-log_dir = "../Log/SYMNet_neurite_oasis_old.txt"
+log_dir = "../Log/SYMNet_neurite_oasis_update.txt"
 
 with open(log_dir, "w") as log:
     log.write("Validation Dice log for SYMNet_neurite_oasis:\n")
