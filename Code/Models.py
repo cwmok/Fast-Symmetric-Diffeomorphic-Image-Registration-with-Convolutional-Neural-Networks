@@ -133,7 +133,7 @@ class SpatialTransform(nn.Module):
                     size_tensor[2] - 1) * 2
         sample_grid[0, :, :, :, 2] = (sample_grid[0, :, :, :, 2] - ((size_tensor[1] - 1) / 2)) / (
                     size_tensor[1] - 1) * 2
-        flow = torch.nn.functional.grid_sample(x, sample_grid,mode = 'bilinear')
+        flow = torch.nn.functional.grid_sample(x, sample_grid, mode='bilinear', align_corners=True)
         
         return flow
 
@@ -148,7 +148,7 @@ class SpatialTransformNearest(nn.Module):
         sample_grid[0,:,:,:,0] = (sample_grid[0,:,:,:,0]-((size_tensor[3]-1)/2))/(size_tensor[3]-1)*2
         sample_grid[0,:,:,:,1] = (sample_grid[0,:,:,:,1]-((size_tensor[2]-1)/2))/(size_tensor[2]-1)*2
         sample_grid[0,:,:,:,2] = (sample_grid[0,:,:,:,2]-((size_tensor[1]-1)/2))/(size_tensor[1]-1)*2
-        flow = torch.nn.functional.grid_sample(x, sample_grid, mode='nearest')
+        flow = torch.nn.functional.grid_sample(x, sample_grid, mode='nearest', align_corners=True)
 
         return flow
 
@@ -167,7 +167,7 @@ class DiffeomorphicTransform(nn.Module):
             grid[0, :, :, :, 0] = (grid[0, :, :, :, 0] - ((size_tensor[3]-1) / 2)) / (size_tensor[3]-1) * 2
             grid[0, :, :, :, 1] = (grid[0, :, :, :, 1] - ((size_tensor[2]-1) / 2)) / (size_tensor[2]-1) * 2
             grid[0, :, :, :, 2] = (grid[0, :, :, :, 2] - ((size_tensor[1]-1) / 2)) / (size_tensor[1]-1) * 2
-            flow = flow + F.grid_sample(flow, grid, mode='bilinear')
+            flow = flow + F.grid_sample(flow, grid, mode='bilinear', align_corners=True)
         return flow
 
 
@@ -177,11 +177,11 @@ class CompositionTransform(nn.Module):
 
     def forward(self, flow_1, flow_2, sample_grid, range_flow):
         size_tensor = sample_grid.size()
-        grid = sample_grid + (flow_1.permute(0,2,3,4,1) * range_flow)
+        grid = sample_grid + (flow_2.permute(0,2,3,4,1) * range_flow)
         grid[0, :, :, :, 0] = (grid[0, :, :, :, 0] - ((size_tensor[3] - 1) / 2)) / (size_tensor[3] - 1) * 2
         grid[0, :, :, :, 1] = (grid[0, :, :, :, 1] - ((size_tensor[2] - 1) / 2)) / (size_tensor[2] - 1) * 2
         grid[0, :, :, :, 2] = (grid[0, :, :, :, 2] - ((size_tensor[1] - 1) / 2)) / (size_tensor[1] - 1) * 2
-        compos_flow = F.grid_sample(flow_2, grid, mode='bilinear') + flow_1
+        compos_flow = F.grid_sample(flow_1, grid, mode='bilinear', align_corners=True) + flow_2
         return compos_flow
 
 

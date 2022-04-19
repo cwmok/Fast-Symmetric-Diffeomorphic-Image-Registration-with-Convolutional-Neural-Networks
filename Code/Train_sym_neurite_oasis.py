@@ -16,7 +16,7 @@ parser = ArgumentParser()
 parser.add_argument("--lr", type=float,
                     dest="lr", default=1e-4, help="learning rate")
 parser.add_argument("--iteration", type=int,
-                    dest="iteration", default=70001,
+                    dest="iteration", default=150001,
                     help="number of total iterations")
 parser.add_argument("--local_ori", type=float,
                     dest="local_ori", default=100.0,
@@ -25,7 +25,7 @@ parser.add_argument("--magnitude", type=float,
                     dest="magnitude", default=0.001,
                     help="magnitude loss: suggested range 0.001 to 1.0")
 parser.add_argument("--smooth", type=float,
-                    dest="smooth", default=4.0,
+                    dest="smooth", default=3.0,
                     help="Gradient smooth loss: suggested range 0.1 to 10")
 parser.add_argument("--checkpoint", type=int,
                     dest="checkpoint", default=5000,
@@ -52,7 +52,7 @@ datapath = opt.datapath
 if not os.path.isdir("../Log"):
     os.mkdir("../Log")
 
-log_dir = "../Log/SYMNet_neurite_oasis.txt"
+log_dir = "../Log/SYMNet_neurite_oasis_old.txt"
 
 with open(log_dir, "w") as log:
     log.write("Validation Dice log for SYMNet_neurite_oasis:\n")
@@ -95,7 +95,7 @@ def train():
     if not os.path.isdir(model_dir):
         os.mkdir(model_dir)
 
-    lossall = np.zeros((6, iteration))
+    lossall = np.zeros((6, iteration+1))
 
     training_generator = Data.DataLoader(Dataset_epoch_crop(names, norm=True), batch_size=1,
                                          shuffle=False, num_workers=2)
@@ -141,9 +141,9 @@ def train():
 
 
             if (step % n_checkpoint == 0):
-                modelname = model_dir + '/SYMNet_neurite_oasis_' + str(step) + '.pth'
+                modelname = model_dir + '/SYMNet_neurite_oasis_smo30_update_' + str(step) + '.pth'
                 torch.save(model.state_dict(), modelname)
-                np.save(model_dir + '/loss_SYMNet_neurite_oasis_' + str(step) + '.npy', lossall)
+                np.save(model_dir + '/loss_SYMNet_neurite_oasis_smo30_update_' + str(step) + '.npy', lossall)
 
                 # Validation
                 fixed_img = sorted(glob.glob(datapath + '/OASIS_OAS1_*_MR1/aligned_norm.nii.gz'))[255]
@@ -189,7 +189,7 @@ def train():
             if step > iteration:
                 break
         print("one epoch pass")
-    np.save(model_dir + '/loss_SYMNet_neurite_oasis.npy', lossall)
+    np.save(model_dir + '/loss_SYMNet_neurite_oasis_update.npy', lossall)
 
 
 imgshape = (160, 144, 192)

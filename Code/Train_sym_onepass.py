@@ -72,7 +72,7 @@ def train():
     if not os.path.isdir(model_dir):
         os.mkdir(model_dir)
 
-    lossall = np.zeros((6, iteration))
+    lossall = np.zeros((6, iteration+1))
 
     training_generator = Data.DataLoader(Dataset_epoch(names, norm=False), batch_size=1,
                                          shuffle=True, num_workers=2)

@@ -29,8 +29,9 @@ If you want to train on the preprocessed OASIS dataset in https://github.com/ada
 2. To train a new SyMNet, `python Train_sym_neurite_oasis.py` will create a SyMNet model trained on the first 255 cases in the dataset.
 3. To test the model, `python Test_SYMNet_neurite_oasis.py --modelpath {{pretrained_model_path}} --fixed ../Data/image_A_full_size.nii.gz --moving ../Data/image_B_full_size.nii.gz` will load the assigned model and register the image "image_A_full_size.nii.gz" and "image_B_full_size.nii.gz".
 
-A pretrained model and its log file are available in "Model/SYMNet_neurite_oasis_55000.pth" and "Log/SYMNet_neurite_oasis.txt", respectively.
+~~A pretrained model and its log file are available in "Model/SYMNet_neurite_oasis_55000.pth" and "Log/SYMNet_neurite_oasis.txt", respectively.~~
 
+We are updating the code in this repository to adapt to the new version of Pytorch. The pre-trained model and its log file will be available soon.
 
 ## Publication
 If you find this repository useful, please cite:

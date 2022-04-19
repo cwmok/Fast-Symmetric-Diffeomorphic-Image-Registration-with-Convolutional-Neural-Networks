@@ -78,7 +78,7 @@ def test():
         F_BA = F_BA.astype(np.float32) * range_flow
         
         F_AB = F_X_Y.permute(0, 2, 3, 4, 1).data.cpu().numpy()[0, :, :, :, :]
-        F_AB =  F_AB.astype(np.float32) * range_flow
+        F_AB = F_AB.astype(np.float32) * range_flow
         
         warped_B = transform(moved_img, F_Y_X.permute(0, 2, 3, 4, 1) * range_flow, grid).data.cpu().numpy()[0, 0, :, :, :]
         warped_A = transform(fixed_img, F_X_Y.permute(0, 2, 3, 4, 1) * range_flow, grid).data.cpu().numpy()[0, 0, :, :, :]
