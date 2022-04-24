@@ -8,7 +8,7 @@ from Functions import generate_grid,save_img,save_flow, load_4D_with_header, img
 
 parser = ArgumentParser()
 parser.add_argument("--modelpath", type=str,
-                    dest="modelpath", default='../Model/SYMNet_neurite_oasis_55000.pth',
+                    dest="modelpath", default='../Model/SYMNet_neurite_oasis_smo30_update_80000.pth',
                     help="frequency of saving models")
 parser.add_argument("--savepath", type=str,
                     dest="savepath", default='../Result',

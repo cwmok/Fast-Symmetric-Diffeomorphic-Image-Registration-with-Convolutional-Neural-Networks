@@ -22,7 +22,7 @@ parser.add_argument("--local_ori", type=float,
                     dest="local_ori", default=100.0,
                     help="Local Orientation Consistency loss: suggested range 1 to 1000")
 parser.add_argument("--magnitude", type=float,
-                    dest="magnitude", default=0.001,
+                    dest="magnitude", default=0.1,
                     help="magnitude loss: suggested range 0.001 to 1.0")
 parser.add_argument("--smooth", type=float,
                     dest="smooth", default=3.0,

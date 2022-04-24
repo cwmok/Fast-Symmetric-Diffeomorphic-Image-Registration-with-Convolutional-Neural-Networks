@@ -14,22 +14,22 @@ parser = ArgumentParser()
 parser.add_argument("--lr", type=float,
                     dest="lr", default=1e-4, help="learning rate")
 parser.add_argument("--iteration", type=int,
-                    dest="iteration", default=160001,
+                    dest="iteration", default=140001,
                     help="number of total iterations")
 parser.add_argument("--local_ori", type=float,
-                    dest="local_ori", default=1000.0,
+                    dest="local_ori", default=100.0,
                     help="Local Orientation Consistency loss: suggested range 1 to 1000")
 parser.add_argument("--magnitude", type=float,
-                    dest="magnitude", default=0.001,
+                    dest="magnitude", default=0.1,
                     help="magnitude loss: suggested range 0.001 to 1.0")
 parser.add_argument("--smooth", type=float,
-                    dest="smooth", default=4.0,
+                    dest="smooth", default=3.0,
                     help="Gradient smooth loss: suggested range 0.1 to 10")
 parser.add_argument("--checkpoint", type=int,
                     dest="checkpoint", default=10000,
                     help="frequency of saving models")
 parser.add_argument("--start_channel", type=int,
-                    dest="start_channel", default=8,
+                    dest="start_channel", default=6, # We use 8 in our paper
                     help="number of start channels")
 parser.add_argument("--datapath", type=str,
                     dest="datapath",

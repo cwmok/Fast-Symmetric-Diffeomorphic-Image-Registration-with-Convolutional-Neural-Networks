@@ -8,13 +8,13 @@ from Functions import generate_grid,save_img,save_flow, load_4D, imgnorm
 
 parser = ArgumentParser()
 parser.add_argument("--modelpath", type=str,
-                    dest="modelpath", default='../Model/SYMNet_160000.pth',
+                    dest="modelpath", default='../Model/SYMNet_140000.pth',
                     help="frequency of saving models")
 parser.add_argument("--savepath", type=str,
                     dest="savepath", default='../Result',
                     help="path for saving images")
 parser.add_argument("--start_channel", type=int,
-                    dest="start_channel", default=8,
+                    dest="start_channel", default=6,
                     help="number of start channels")
 parser.add_argument("--fixed", type=str,
                     dest="fixed", default='../Data/image_A.nii',
