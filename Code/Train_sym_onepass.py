@@ -29,7 +29,7 @@ parser.add_argument("--checkpoint", type=int,
                     dest="checkpoint", default=10000,
                     help="frequency of saving models")
 parser.add_argument("--start_channel", type=int,
-                    dest="start_channel", default=6, # We use 8 in our paper
+                    dest="start_channel", default=8,
                     help="number of start channels")
 parser.add_argument("--datapath", type=str,
                     dest="datapath",
