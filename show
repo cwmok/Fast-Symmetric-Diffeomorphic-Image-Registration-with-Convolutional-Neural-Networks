@@ -1,0 +1,60 @@
+import numpy as np
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pylab as plt
+import nibabel as nib
+from nibabel.viewers import OrthoSlicer3D
+
+
+def show(file):
+    img = nib.load(file)     
+    print(img)
+    print(img.header['db_name'])    #输出nii的头文件
+    print(img.dataobj.shape)
+    # print(len(img.dataobj.shape))
+    if len(img.dataobj.shape)==4:
+        width, height,queue,m = img.dataobj.shape
+
+        
+        x = int((queue/10) ** 0.5) + 1
+        num = 1
+        for i in range(0, queue, 10):
+            img_arr = img.dataobj[:,:,i]
+            plt.subplot(x,x,num)
+            plt.imshow(img_arr.astype(np.uint8))
+            num += 1
+        plt.show()
+        OrthoSlicer3D(img.dataobj).show() 
+    elif len(img.dataobj.shape)==3:
+        width, height,queue= img.dataobj.shape
+        #width, height,queue= img.dataobj.shape
+        
+        x = int((queue/10) ** 0.5) + 1
+        num = 1
+        for i in range(0, queue, 10):
+            img_arr = img.dataobj[:,:,i]
+            plt.subplot(x,x,num)
+            plt.imshow(img_arr, cmap='gray')
+            num += 1
+        plt.show()
+        OrthoSlicer3D(img.dataobj).show() 
+
+    
+
+if __name__=="__main__":
+    #输出原图A
+    file = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Data/image_A_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    #输出原图B
+    file1 = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Data/image_B_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    file2 = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Result/wrapped_flow_A_to_B_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    file3 = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Result/wrapped_flow_B_to_A_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    file4 = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Result/wrapped_norm_A_to_B_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    file5 = 'Fast-Symmetric-Diffeomorphic-Image-Registration-with-Convolutional-Neural-Networks-master/Result/wrapped_norm_B_to_A_full_size.nii.gz'    #你的nii或者nii.gz文件路径
+    show(file)
+    show(file1)
+    show(file2)
+    show(file3)
+    show(file4)
+    show(file5)
+
+
