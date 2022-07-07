@@ -54,7 +54,7 @@ def test():
     fixed_img = load_4D(fixed_path)
     moved_img = load_4D(moving_path)
 
-    norm = False
+    norm = True
     if norm:
         fixed_img = imgnorm(fixed_img)
         moved_img = imgnorm(moved_img)
